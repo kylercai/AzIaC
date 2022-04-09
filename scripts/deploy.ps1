@@ -1,4 +1,4 @@
-$SubscriptionID = "3dde1082-e5c1-4d68-8832-28fdd5a7452c"
+$SubscriptionID = $(subscriptionId)
 $Environment = "AzureChinaCloud"
 $Location = "chinaeast2"
 $K2Group = "K2RG"
@@ -6,7 +6,7 @@ $K2BackupGroup = "K2BackupRG"
 $K2BackupStorAcctName = "K2BackupStorAcct"
 
 #Connect-AzAccount -Environment  $Environment
-az cloud set -n $Environment
+#az cloud set -n $Environment
 Set-AzContext -SubscriptionId $SubscriptionID 
 
 #创建网络基础环境，创建AKS环境
