@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+           "value": "chinaeast2"
+    },
+    "aksClusterName": {
+      "value": "k2main"
+    },
+    "aksClusterKubernetesVersion": {
+      "value": "1.22.4"
+    },
+    "aksClusterAdminUsername": {
+      "value": "k2admin"
+    },
+    "aksClusterNetworkPlugin": {
+      "value": "azure"
+    },
+    "aksClusterSshPublicKey": {
+      "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC+WZPeGCANvIiNQibBgH8r9qkjZr6dIERMCX/tBofpXWIXojEeRxHp4u11C2lJiXTO3FPOyigmRISCJOb+AGAWPGXeD65IK671JbHaGW56Fl0SRHJs0zNzx3AU4yMz/PGv4YVkS35O4IArzDN7d65n03eKPbXDtyeNezvGi89D7VK17eN5vvrdAhNvESvpXWWxA19sOYYQ4SZC7liWBqi0aLWHuoki94ShQoyj1pA5/biRs2CiuOlm7ZMHonPYUOuuZY41QzJfmJ7bxwXbM8mx9Zq1iqM3QpXpDVRQCCB+XHmZHd9UjEw30m6ZBPkFl5pHmMplBvxJexTO9ijwof9l0JkP2OM5Vsmg7xYYaN3Kz69B+RBfg0g2IQ6p5sppjmwY6l3NvJSRws+5SHGflHaa27mhArHWfwRB1wzd7KZVQ6N04OxiAQCslcZlU0b+3EjyADSv6uX6ZxOAUmWp2XHmqM6Bu3FnsbP64BL5wgKTnHNgc05urJgAQ1KUa9fJJdk= aks"
+    },
+    "nodePoolMaxCount": {
+      "value": 4
+    },
+    "nodePoolMinCount": {
+      "value": 2
+    },
+    "vmName":{
+      "value":"jumpboxvm"
+    },
+    "vmAdminUsername": {
+      "value": "k2vmadmin"
+    },
+    "vmAdminPasswordOrKey": {
+      "value": "leifei81@125Q"
+    },
+    "logAnalyticsWorkspaceName": {
+      "value": "k2lawks"
+    }
+  }
+}

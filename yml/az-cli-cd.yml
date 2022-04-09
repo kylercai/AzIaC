@@ -1,0 +1,19 @@
+variables:
+  ResourceGroupName: 'aks2'
+  deploymnetName: 'k2-aks-bicep'
+
+steps:
+- task: AzureCLI@2
+  displayName: 'Azure CLI '
+  inputs:
+    azureSubscription: 'my azure'
+    scriptType: pscore
+    scriptLocation: inlineScript
+    inlineScript: |
+                    
+      az deployment group create  `
+                     --template-file $(System.DefaultWorkingDirectory)/_DevOps-Training-CI/JSON/k2/main.bicep `
+                     --parameters $(System.DefaultWorkingDirectory)/_DevOps-Training-CI/JSON/k2/azuredeploy.parameters.json `
+                     --resource-group $(ResourceGroupName) `
+                    --name $(deploymnetName)
+                    

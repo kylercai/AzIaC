@@ -1,0 +1,27 @@
+#对于初始化实例按照如下顺序执行：
+#部署sql server->部署用于备份的存储->部署自动备份策略
+#对于故障转移的实例按照如下顺序执行：
+#部署sql server->部署自动备份策略->将数据库还原到新实例
+
+#1 第一次部署初始化，部署在K2-DB-Test资源组中
+
+#部署sql server，部署在资源组K2-DB-Test
+.\sqlserverdeploy.ps1 -SubscriptionID a15354eb-7827-4177-9745-7abe704ab8e9 -VnetName 'k2Vnet' -SubnetName 'k2WorkflowSQLVMSubnet' -VnetResourceGroupName 'k2-aks' -Location 'chinaeast2' -VMResourceGroupName 'K2-DB-Test' -VMName 'k2sqlserver01' -TemplateFile 'sqlservertemplate.json' -TemplateParameterFile 'sqlserverparameters.json'
+
+#部署用于备份的存储，此存储是备份数据库的存储，不能丢，否则无法还原，建议部署在单独的资源组K2-Backup-Test
+.\storage.ps1 -SubscriptionID a15354eb-7827-4177-9745-7abe704ab8e9 -LocationName 'China East 2' -StorageResourceGroupName K2-Backup-Test -StorageAccountName k2sqlserver01backup -ContainerName backupcontainer
+
+#部署自动备份策略，虚拟机在资源组K2-DB-Test，备份存储在资源组K2-Backup-Test
+.\sqlautobackup.ps1 -SubscriptionID a15354eb-7827-4177-9745-7abe704ab8e9 -VMName k2sqlserver01 -StorageAccountName k2sqlserverbackupstorage -VMResourceGroupName K2-DB-Test -StorageResourceGroupName K2-Backup-Test
+
+
+#2 灾难恢复，假设原来的资源组K2-DB-Test全部丢失，需要新建资源组K2-DB-Test
+
+#部署sql server
+.\sqlserverdeploy.ps1 -SubscriptionID a15354eb-7827-4177-9745-7abe704ab8e9 -VnetName 'k2Vnet' -SubnetName 'k2WorkflowSQLVMSubnet' -VnetResourceGroupName 'k2-aks' -Location 'chinaeast2' -VMResourceGroupName 'K2-DB-Test' -VMName 'k2sqlserver01' -TemplateFile 'sqlservertemplate.json' -TemplateParameterFile 'sqlserverparameters.json'
+
+#部署自动备份策略，备份设置为依然保存在之前的存储上：K2-Backup-Test/k2sqlserverbackupstorage
+.\sqlautobackup.ps1 -SubscriptionID a15354eb-7827-4177-9745-7abe704ab8e9 -VMName k2sqlserver01 -StorageAccountName k2sqlserverbackupstorage -VMResourceGroupName K2-DB-Test -StorageResourceGroupName K2-Backup-Test
+
+#将数据库还原到新实例VM
+.\sqlserverdatabase.ps1 -SubscriptionID a15354eb-7827-4177-9745-7abe704ab8e9 -VMResourceGroupName K2-DB-Test -StorageResourceGroupName K2-Backup-Test -StorageAccountName k2sqlserverbackupstorage -ContainerName backupcontainer -VMName k2sqlserver01 -Database K2 -UserName k2sqladmin -Password k2dbP@ssw0rd+2022 -Action restore

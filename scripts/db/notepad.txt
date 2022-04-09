@@ -1,0 +1,33 @@
+az group create -l chinaeast2 -g K2RG
+
+az deployment group create --template-file ../main.bicep --parameters ../azuredeploy.parameters.json --resource-group K2RG --name aks-deploy
+
+
+
+az network public-ip create -g 'k2-aks' -n 'k2sqlserver01-ip' -l 'chinaeast2' --sku Basic --allocation-method static
+
+
+.\sqlserverdeploy.ps1 -SubscriptionID c14f0d46-cae2-4c8e-b9ff-b73f094caa96 -VnetName 'k2Vnet' -SubnetName 'k2WorkflowSQLVMSubnet' -VnetResourceGroupName 'k2-aks' -Location 'chinaeast2' -VMResourceGroupName 'k2-aks' -VMName 'k2sqlserver01' -VMPipName 'k2sqlserver01-ip' -TemplateFile 'sqlservertemplate.json' -TemplateParameterFile 'sqlserverparameters.json'
+
+.\sqlserverdeploy.ps1 -SubscriptionID c14f0d46-cae2-4c8e-b9ff-b73f094caa96 -VnetName 'k2Vnet' -SubnetName 'k2WorkflowSQLVMSubnet' -VnetResourceGroupName 'k2-aks' -Location 'chinaeast2' -VMResourceGroupName 'k2-aks' -VMName 'k2sqlserver01' -TemplateFile 'sqlservertemplate.json' -TemplateParameterFile 'sqlserverparameters.json'
+
+.\sqlautobackup.ps1 -SubscriptionID c14f0d46-cae2-4c8e-b9ff-b73f094caa96 -VMName k2sqlserver01 -StorageAccountName k2sqlserverbackupstorage -VMResourceGroupName k2-aks -StorageResourceGroupName K2-Backup
+
+.\sqlserverdatabase.ps1 -SubscriptionID c14f0d46-cae2-4c8e-b9ff-b73f094caa96 -VMResourceGroupName k2-aks -StorageResourceGroupName K2-Backup -StorageAccountName k2sqlserverbackupstorage -ContainerName backupcontainer -VMName k2sqlserver01 -Database K2 -UserName k2sqladmin -Password k2dbP@ssw0rd+2022 -Action restore
+
+
+
+$SQLVMPip = az network public-ip show -n k2sqlserver01-ip -g k2-aks --query ipAddress
+
+
+
+az network public-ip create --name myVMPublicIP --resource-group myResourceGroup
+az vm nic list --vm-name 'k2sqlserver01' --resource-group 'k2-aks'
+az network nic ip-config list --nic-name "k2sqlserver01565" --resource-group 'k2-aks' --out table
+
+az network nic ip-config update --name "ipconfig1" --nic-name "k2sqlserver01565" --resource-group 'k2-aks' --public-ip-address 'k2sqlserver01-ip'
+
+
+Get-AzureRmPublicIpAddress -Name k2sqlserver01-pip -ResourceGroup 'k2-aks'
+
+az network public-ip create -g k2-aks -n k2sqlserver01-ip -l chinaeast2 --sku Basic --allocation-method static

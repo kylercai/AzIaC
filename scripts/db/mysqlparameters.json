@@ -1,0 +1,124 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "serverName": {
+            "value": "[ServerName]"
+        },
+        "location": {
+            "value": "chinaeast2"
+        },
+        "serverEdition": {
+            "value": "GeneralPurpose"
+        },
+        "vCores": {
+            "value": 8
+        },
+        "storageSizeGB": {
+            "value": 64
+        },
+        "haEnabled": {
+            "value": "Disabled"
+        },
+        "tags": {
+            "value": {}
+        },
+        "firewallRules": {
+            "value": {
+                "rules": []
+            }
+        },
+        "vnetData": {
+            "value": {
+                "isLoading": false,
+                "virtualNetworkName": "k2Vnet",
+                "virtualNetworkId": "/subscriptions/a15354eb-7827-4177-9745-7abe704ab8e9/resourceGroups/k2-aks/providers/Microsoft.Network/virtualNetworks/k2Vnet",
+                "subnetName": "k2WorkflowMySQLSubnet",
+                "virtualNetworkSubscriptionName": "万翼科技-K2-云协同与信息安全中心",
+                "virtualNetworkAddressPrefix": "10.0.0.0/8",
+                "virtualNetworkResourceGroupName": "k2-aks",
+                "location": "chinaeast2",
+                "subscriptionId": "a15354eb-7827-4177-9745-7abe704ab8e9",
+                "subnetProperties": {
+                    "provisioningState": "Succeeded",
+                    "addressPrefix": "10.1.4.0/24",
+                    "networkSecurityGroup": {
+                        "id": "/subscriptions/a15354eb-7827-4177-9745-7abe704ab8e9/resourceGroups/k2-aks/providers/Microsoft.Network/networkSecurityGroups/k2WorkflowMySQLSubnetNsg"
+                    },
+                    "delegations": [
+                        {
+                            "name": "dlg-Microsoft.DBforMySQL-flexibleServers",
+                            "properties": {
+                                "serviceName": "Microsoft.DBforMySQL/flexibleServers"
+                            }
+                        }
+                    ],
+                    "privateEndpointNetworkPolicies": "Disabled",
+                    "privateLinkServiceNetworkPolicies": "Enabled"
+                },
+                "subnetNeedsUpdate": true,
+                "isNewVnet": false,
+                "delegatedSubnetArguments": {
+                    "SubnetArmResourceId": "/subscriptions/a15354eb-7827-4177-9745-7abe704ab8e9/resourceGroups/k2-aks/providers/Microsoft.Network/virtualNetworks/k2Vnet/subnets/k2WorkflowMySQLSubnet"
+                },
+                "usePrivateDnsZone": true,
+                "isNewPrivateDnsZone": true,
+                "privateDnsResourceGroup": "k2-aks",
+                "privateDnsSubscriptionId": "a15354eb-7827-4177-9745-7abe704ab8e9",
+                "privateDnsZoneName": "[ServerName].private.mysql.database.chinacloudapi.cn",
+                "privateDnsZoneSubscription": "万翼科技-K2-云协同与信息安全中心",
+                "privateDnsZoneArguments": {
+                    "PrivateDnsZoneArmResourceId": "/subscriptions/a15354eb-7827-4177-9745-7abe704ab8e9/resourceGroups/k2-aks/providers/Microsoft.Network/privateDnsZones/[ServerName].private.mysql.database.chinacloudapi.cn"
+                },
+                "linkVirtualNetwork": true,
+                "Network": {
+                    "DelegatedSubnetResourceId": "/subscriptions/a15354eb-7827-4177-9745-7abe704ab8e9/resourceGroups/k2-aks/providers/Microsoft.Network/virtualNetworks/k2Vnet/subnets/k2WorkflowMySQLSubnet",
+                    "PrivateDnsZoneResourceId": "/subscriptions/a15354eb-7827-4177-9745-7abe704ab8e9/resourceGroups/k2-aks/providers/Microsoft.Network/privateDnsZones/[ServerName].private.mysql.database.chinacloudapi.cn",
+                    "PrivateDnsZoneArmResourceId": "/subscriptions/a15354eb-7827-4177-9745-7abe704ab8e9/resourceGroups/k2-aks/providers/Microsoft.Network/privateDnsZones/[ServerName].private.mysql.database.chinacloudapi.cn"
+                }
+            }
+        },
+        "publicNetworkAccess": {
+            "value": "Disabled"
+        },
+        "backupRetentionDays": {
+            "value": 7
+        },
+        "geoRedundantBackup": {
+            "value": "Disabled"
+        },
+        "availabilityZone": {
+            "value": ""
+        },
+        "vmName": {
+            "value": "Standard_D8ds_v4"
+        },
+        "storageIops": {
+            "value": 1000
+        },
+        "storageAutogrow": {
+            "value": "Enabled"
+        },
+        "standbyAvailabilityZone": {
+            "value": ""
+        },
+        "virtualNetworkDeploymentName": {
+            "value": "virtualNetwork_[DateSuffix]"
+        },
+        "virtualNetworkLinkDeploymentName": {
+            "value": "virtualNetworkLink_[DateSuffix]"
+        },
+        "privateDnsZoneDeploymentName": {
+            "value": "privateDnsZone_[DateSuffix]"
+        },
+        "administratorLogin": {
+            "value": "k2mysqladmin"
+        },
+        "administratorLoginPassword": {
+            "value": "k2dbP@ssw0rd+2022"
+        },
+        "version": {
+            "value": "5.7"
+        }
+    }
+}

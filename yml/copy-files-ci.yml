@@ -1,0 +1,13 @@
+steps:
+- task: CopyFiles@2
+  displayName: 'Copy Files to:  $(Build.ArtifactStagingDirectory)'
+  inputs:
+    Contents: |
+     **\*.json
+     **\*.bicep
+     **\*.ps1
+    TargetFolder: ' $(Build.ArtifactStagingDirectory)'
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: JSON'
+  inputs:
+    ArtifactName: JSON
