@@ -1,4 +1,4 @@
-$SubscriptionID = $(subscriptionId)
+$SubscriptionID = "3dde1082-e5c1-4d68-8832-28fdd5a7452c"
 $Environment = "AzureChinaCloud"
 $Location = "chinaeast2"
 $K2Group = "K2RG"
