@@ -10,7 +10,7 @@ $K2Group = "K2RG"
 $K2BackupGroup = "K2BackupRG"
 $K2BackupStorAcctName = "K2BackupStorAcct"
 
-#Connect-AzAccount -Environment  $Environment
+Connect-AzAccount -Environment  $Environment
 #az cloud set -n $Environment
 Set-AzContext -SubscriptionId $SubscriptionID 
 
