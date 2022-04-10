@@ -11,9 +11,19 @@ $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
 
 az group create -l $Location -g $K2Group
 
+$Path = (Get-Item .).FullName
+$TemplateParameterFile = "azuredeploy.parameters.json"
+$TemplateParameterFileText = [System.IO.File]::ReadAllText($Path + "\" + $TemplateParameterFile)
+$TemplateParameterObject = ConvertFrom-Json $TemplateParameterFileText
+$TemplateParameterObject.parameters.location.value = $Location
+$TemplateParameterFile = $Path + "\" + $TemplateParameterFile
+$TemplateParameterObject | ConvertTo-Json -depth 100 | Set-Content $TemplateParameterFile
+
+$TemplateMainFile = $Path + "\" + "main.bicep"
+
 az deployment group create  `
-  --template-file ../main.bicep `
-  --parameters ../azuredeploy.parameters.json `
+  --template-file $TemplateMainFile `
+  --parameters $TemplateParameterFile `
   --resource-group $K2Group `
   --name $aksDeploymnetName
 

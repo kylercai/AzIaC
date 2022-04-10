@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "location": {
-           "value": "chinaeast2"
+      "value": "chinaeast2"
     },
     "aksClusterName": {
       "value": "k2main"
@@ -26,8 +26,8 @@
     "nodePoolMinCount": {
       "value": 2
     },
-    "vmName":{
-      "value":"jumpboxvm"
+    "vmName": {
+      "value": "jumpboxvm"
     },
     "vmAdminUsername": {
       "value": "k2vmadmin"

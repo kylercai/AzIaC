@@ -6,6 +6,9 @@ az deployment group create --template-file ../main.bicep --parameters ../azurede
 
 az network public-ip create -g 'k2-aks' -n 'k2sqlserver01-ip' -l 'chinaeast2' --sku Basic --allocation-method static
 
+.\buildk2.ps1 -SubscriptionID c14f0d46-cae2-4c8e-b9ff-b73f094caa96 -Location eastus2
+.\buildk2.ps1 -SubscriptionID 3dde1082-e5c1-4d68-8832-28fdd5a7452c -Location chinaeast2
+.\buildk2.ps1 -SubscriptionID a15354eb-7827-4177-9745-7abe704ab8e9 -Location chinaeast2
 
 .\sqlserverdeploy.ps1 -SubscriptionID c14f0d46-cae2-4c8e-b9ff-b73f094caa96 -VnetName 'k2Vnet' -SubnetName 'k2WorkflowSQLVMSubnet' -VnetResourceGroupName 'k2-aks' -Location 'chinaeast2' -VMResourceGroupName 'k2-aks' -VMName 'k2sqlserver01' -VMPipName 'k2sqlserver01-ip' -TemplateFile 'sqlservertemplate.json' -TemplateParameterFile 'sqlserverparameters.json'
 
