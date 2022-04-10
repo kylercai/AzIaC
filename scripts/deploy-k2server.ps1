@@ -10,7 +10,7 @@ param(
 $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
 
 #镜像：k2-eng-image-20220329192619
-#/subscriptions/a15354eb-7827-4177-9745-7abe704ab8e9/resourceGroups/K2Backup/providers/Microsoft.Compute/images/k2-eng-image-20220329192619
+#/subscriptions/<subscription_id>/resourceGroups/K2Backup/providers/Microsoft.Compute/images/k2-eng-image-20220329192619
 
 $ImageId = Get-AzResource -ResourceGroup $K2BackupGroup -Name k2-eng-image-20220329192619 -ResourceType Microsoft.Compute/images | Select-Object -expand ResourceId
 
