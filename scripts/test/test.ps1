@@ -13,4 +13,4 @@ $K2Group = "K2GRP"
 Connect-AzAccount -Environment  $Environment
 #az cloud set -n $Environment
 Set-AzContext -SubscriptionId $SubscriptionID 
-az group create -n $K2Group -l $Location
+az group create -g $K2Group -l $Location
