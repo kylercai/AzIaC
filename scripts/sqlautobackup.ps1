@@ -10,7 +10,8 @@ param(
      [Parameter()]
      [string]$StorageResourceGroupName
  )
-Set-AzContext -SubscriptionId $SubscriptionID   
+# restore may needed
+#Set-AzContext -SubscriptionId $SubscriptionID   
 
 #$VMName = "k2sqlserver01"
 #$ResourceGroupName = "K2-DB-Test"

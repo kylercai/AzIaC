@@ -9,8 +9,6 @@ $aksDeploymnetName = "aks-deploy"
 
 $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
 
-az group create -l $Location -g $K2Group
-
 $Path = (Get-Item .).FullName
 $TemplateParameterFile = "azuredeploy.parameters.json"
 $TemplateParameterFileText = [System.IO.File]::ReadAllText($Path + "\" + $TemplateParameterFile)

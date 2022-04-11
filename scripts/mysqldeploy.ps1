@@ -6,12 +6,15 @@ param(
     [Parameter()]
     [string]$ServerName,
     [Parameter()]
+    [string]$Location,
+    [Parameter()]
     [string]$TemplateFile,
     [Parameter()]
     [string]$TemplateParameterFile
  )
 
-Set-AzContext -SubscriptionId $SubscriptionID #"a15354eb-7827-4177-9745-7abe704ab8e9"
+# restore may needed
+#Set-AzContext -SubscriptionId $SubscriptionID
 
 $Path = (Get-Item .).FullName
 $Suffix = Get-Random -Maximum 1000
@@ -21,6 +24,7 @@ $DateSuffix = $Date.ToString("yyyyMMddTHHmmssfffffffZ")
 $TemplateParameterFileText = [System.IO.File]::ReadAllText($Path + "\" + $TemplateParameterFile)
 $TemplateParameterFileText = $TemplateParameterFileText.replace('[ServerName]', $ServerName).replace('[DateSuffix]', $DateSuffix)
 $TemplateParameterObject = ConvertFrom-Json $TemplateParameterFileText
+$TemplateParameterObject.parameters.location.value = $Location
 
 
 $TemplateFile = $Path + "\" + $TemplateFile

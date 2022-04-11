@@ -19,7 +19,8 @@ param(
       [string]$TemplateParameterFile
  )
 
-Set-AzContext -SubscriptionId $SubscriptionID
+# restore may needed
+#Set-AzContext -SubscriptionId $SubscriptionID
 
 #$VnetName = "k2Vnet"
 #$VnetResourceGroupName = "k2-aks"

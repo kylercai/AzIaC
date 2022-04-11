@@ -34,7 +34,8 @@ $PolicyName = $StorageAccountName + $Action + 'policy'
 #$UserName = "k2sqladmin"
 
 
-Set-AzContext -SubscriptionId $SubscriptionID   
+# restore may needed
+#Set-AzContext -SubscriptionId $SubscriptionID   
 
 $AccountKeys = Get-AzStorageAccountKey -ResourceGroupName $StorageResourceGroupName -Name $StorageAccountName  
 

@@ -12,9 +12,14 @@ $K2Group = "K2IaC"
 $K2BackupGroup = "K2Backup"
 $K2BackupStorAcct = "k2sqlserverbackupstorage"
 
-Connect-AzAccount -Environment  $Environment
+$stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
+
+#Connect-AzAccount -Environment  $Environment
 #az cloud set -n $Environment
-Set-AzContext -SubscriptionId $SubscriptionID 
+# restore may needed
+#Set-AzContext -SubscriptionId $SubscriptionID 
+
+az group create -l $Location -g $K2Group
 
 #创建网络基础环境，创建AKS环境
 ./deploy-aks.ps1 -Location $Location -K2Group $K2Group
@@ -23,6 +28,11 @@ Set-AzContext -SubscriptionId $SubscriptionID
 ./deploy-sqlserver.ps1 -SubscriptionID $SubscriptionID -Location $Location -K2Group $K2Group -K2BackupGroup $K2BackupGroup -K2BackupStorAcct $K2BackupStorAcct
 
 #恢复MySQL数据库
+./deploy-mysql.ps1 -SubscriptionID $SubscriptionID -Location $Location -K2Group $K2Group
 
 #恢复K2服务器
-./deploy-k2server.ps1 -Location $Location -K2Group $K2Group -K2BackupGroup $K2BackupGroup
+./deploy-k2server.ps1 -Location chinanorth3 -K2Group $K2Group -K2BackupGroup $K2BackupGroup
+
+# Calculate elapsed time
+$stopwatch.Stop()
+$stopwatch.Elapsed
