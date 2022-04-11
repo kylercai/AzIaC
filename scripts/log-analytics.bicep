@@ -1,5 +1,5 @@
 @description('Specifies the location of AKS cluster.')
-param location string = resourceGroup().location
+param location string = 'chinaeast2'
 
 @description('Specifies the name of the Log Analytics Workspace.')
 param logAnalyticsWorkspaceName string

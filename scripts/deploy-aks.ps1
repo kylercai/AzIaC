@@ -1,5 +1,7 @@
 param(
       [Parameter()]
+      [string]$SubscriptionID,
+      [Parameter()]
       [string]$Location,
       [Parameter()]
       [string]$K2Group
@@ -8,6 +10,8 @@ param(
 $aksDeploymnetName = "aks-deploy"
 
 $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
+
+Set-AzContext -SubscriptionId $SubscriptionID
 
 $Path = (Get-Item .).FullName
 $TemplateParameterFile = "azuredeploy.parameters.json"

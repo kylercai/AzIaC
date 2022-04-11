@@ -1,0 +1,182 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "chinanorth3"
+    },
+    "networkInterfaceName": {
+      "value": "k2sqlserver01189"
+    },
+    "enableAcceleratedNetworking": {
+      "value": true
+    },
+    "subnetName": {
+      "value": "k2WorkflowSQLVMSubnet"
+    },
+    "virtualNetworkId": {
+      "value": "/subscriptions/a15354eb-7827-4177-9745-7abe704ab8e9/resourceGroups/K2IaC/providers/Microsoft.Network/virtualNetworks/k2Vnet"
+    },
+    "publicIpAddressName": {
+      "value": "k2sqlserver01-ip"
+    },
+    "publicIpAddressType": {
+      "value": "Dynamic"
+    },
+    "publicIpAddressSku": {
+      "value": "Basic"
+    },
+    "virtualMachineName": {
+      "value": "k2sqlserver01"
+    },
+    "virtualMachineComputerName": {
+      "value": "k2sqlserver01"
+    },
+    "virtualMachineRG": {
+      "value": "K2IaC"
+    },
+    "osDiskType": {
+      "value": "Premium_LRS"
+    },
+    "dataDisks": {
+      "value": [
+        {
+          "lun": 0,
+          "createOption": "attach",
+          "caching": "ReadOnly",
+          "writeAcceleratorEnabled": false,
+          "id": null,
+          "name": "k2sqlserver01_DataDisk_0",
+          "storageAccountType": null,
+          "diskSizeGB": null,
+          "diskEncryptionSet": null
+        }
+      ]
+    },
+    "dataDiskResources": {
+      "value": [
+        {
+          "name": "k2sqlserver01_DataDisk_0",
+          "sku": "Premium_LRS",
+          "properties": {
+            "diskSizeGB": 512,
+            "creationData": {
+              "createOption": "empty"
+            }
+          }
+        }
+      ]
+    },
+    "virtualMachineSize": {
+      "value": "Standard_D8s_v4"
+    },
+    "adminUsername": {
+      "value": "k2admin"
+    },
+    "adminPassword": {
+      "value": "k2dbP@ssw0rd+2022"
+    },
+    "sqlVirtualMachineLocation": {
+      "value": "chinanorth3"
+    },
+    "sqlVirtualMachineName": {
+      "value": "k2sqlserver01"
+    },
+    "sqlConnectivityType": {
+      "value": "Private"
+    },
+    "sqlPortNumber": {
+      "value": 1433
+    },
+    "sqlStorageDisksCount": {
+      "value": 1
+    },
+    "sqlStorageWorkloadType": {
+      "value": "General"
+    },
+    "sqlStorageDisksConfigurationType": {
+      "value": "NEW"
+    },
+    "sqlStorageStartingDeviceId": {
+      "value": 2
+    },
+    "sqlStorageDeploymentToken": {
+      "value": 87361
+    },
+    "sqlAutopatchingDayOfWeek": {
+      "value": "Sunday"
+    },
+    "sqlAutopatchingStartHour": {
+      "value": "2"
+    },
+    "sqlAutopatchingWindowDuration": {
+      "value": "60"
+    },
+    "sqlAuthenticationLogin": {
+      "value": "k2sqladmin"
+    },
+    "sqlAuthenticationPassword": {
+      "value": "k2dbP@ssw0rd+2022"
+    },
+    "dataPath": {
+      "value": "F:\\data"
+    },
+    "dataDisksLUNs": {
+      "value": [
+        0
+      ]
+    },
+    "logPath": {
+      "value": "F:\\log"
+    },
+    "logDisksLUNs": {
+      "value": [
+        0
+      ]
+    },
+    "tempDbPath": {
+      "value": "F:\\tempDb"
+    },
+    "tempDisksLUNs": {
+      "value": [
+        0
+      ]
+    },
+    "dataFileCount": {
+      "value": 8
+    },
+    "dataFileSize": {
+      "value": 8
+    },
+    "dataGrowth": {
+      "value": 64
+    },
+    "logFileSize": {
+      "value": 8
+    },
+    "logGrowth": {
+      "value": 64
+    },
+    "SQLSystemDbOnDataDisk": {
+      "value": false
+    },
+    "rServicesEnabled": {
+      "value": "false"
+    },
+    "maxdop": {
+      "value": 4
+    },
+    "isOptimizeForAdHocWorkloadsEnabled": {
+      "value": false
+    },
+    "collation": {
+      "value": "SQL_Latin1_General_CP1_CI_AS"
+    },
+    "minServerMemoryMB": {
+      "value": 0
+    },
+    "maxServerMemoryMB": {
+      "value": 2147483647
+    }
+  }
+}

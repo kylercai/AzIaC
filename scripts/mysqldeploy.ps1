@@ -14,7 +14,7 @@ param(
  )
 
 # restore may needed
-#Set-AzContext -SubscriptionId $SubscriptionID
+Set-AzContext -SubscriptionId $SubscriptionID
 
 $Path = (Get-Item .).FullName
 $Suffix = Get-Random -Maximum 1000

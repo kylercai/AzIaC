@@ -277,19 +277,21 @@ module vnet 'vnet.bicep' = {
   }
 }
 
+/*
 module bastion 'bastion.bicep' = {
   name: 'bastion'
   params: {
     bastionHostName: bastionName
     bastionSubnetId: vnet.outputs.bastionSubnetId
-    location: location
+    location: 'chinaeast2'
   }
 }
+*/
 
 module logAnalytics 'log-analytics.bicep' = {
   name: 'log-analytics.bicep'
   params: {
-    location: location
+    location: 'chinaeast2'
     logAnalyticsWorkspaceName: logAnalyticsWorkspaceName
     logAnalyticsSku: logAnalyticsSku
     logAnalyticsRetentionInDays: logAnalyticsRetentionInDays

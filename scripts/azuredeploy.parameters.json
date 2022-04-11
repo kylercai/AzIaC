@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "location": {
-      "value": "chinaeast2"
+      "value": "chinanorth3"
     },
     "aksClusterName": {
       "value": "k2main"

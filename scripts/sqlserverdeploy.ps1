@@ -20,7 +20,7 @@ param(
  )
 
 # restore may needed
-#Set-AzContext -SubscriptionId $SubscriptionID
+Set-AzContext -SubscriptionId $SubscriptionID
 
 #$VnetName = "k2Vnet"
 #$VnetResourceGroupName = "k2-aks"
@@ -34,6 +34,7 @@ $TemplateParameterObject = ConvertFrom-Json $TemplateParameterFileText
 
 $TemplateParameterObject.parameters.networkInterfaceName.value = $VMName + $Suffix
 $TemplateParameterObject.parameters.location.value = $Location
+$TemplateParameterObject.parameters.sqlVirtualMachineLocation.value = $Location
 $TemplateParameterObject.parameters.virtualMachineRG.value = $VMResourceGroupName
 $TemplateParameterObject.parameters.virtualMachineName.value = $VMName
 $TemplateParameterObject.parameters.virtualMachineComputerName.value = $VMName
