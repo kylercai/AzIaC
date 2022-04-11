@@ -19,7 +19,7 @@ $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
 # restore may needed
 #Set-AzContext -SubscriptionId $SubscriptionID 
 
-az group create -l $Location -g $K2Group
+#az group create -l $Location -g $K2Group
 
 #创建网络基础环境，创建AKS环境
 ./deploy-aks.ps1 -Location $Location -K2Group $K2Group
