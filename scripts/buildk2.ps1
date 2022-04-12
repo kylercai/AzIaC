@@ -32,7 +32,7 @@ az group create -l $Location -g $K2Group
 ./deploy-mysql.ps1 -SubscriptionID $SubscriptionID -Location chinaeast2 -K2Group $K2Group
 
 #恢复K2服务器
-./deploy-k2server.ps1 -SubscriptionID $SubscriptionID -Location $Location -K2Group $K2Group -K2BackupGroup $K2BackupGroup
+./deploy-k2engine.ps1 -SubscriptionID $SubscriptionID -Location $Location -K2Group $K2Group -K2BackupGroup $K2BackupGroup
 
 # Calculate elapsed time
 $stopwatch.Stop()
