@@ -20,7 +20,7 @@ param(
  )
 
 # restore may needed
-Set-AzContext -SubscriptionId $SubscriptionID
+#Set-AzContext -SubscriptionId $SubscriptionID
 
 #$VnetName = "k2Vnet"
 #$VnetResourceGroupName = "k2-aks"
