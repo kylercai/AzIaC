@@ -17,8 +17,8 @@ $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
 #Connect-AzAccount -Environment  $Environment
 #az cloud set -n $Environment
 # restore may needed
-Set-AzContext -SubscriptionId $SubscriptionID 
-az account set -s $SubscriptionID
+#Set-AzContext -SubscriptionId $SubscriptionID 
+#az account set -s $SubscriptionID
 
 az group create -l $Location -g $K2Group
 
