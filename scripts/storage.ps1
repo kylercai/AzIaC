@@ -17,7 +17,7 @@ param(
 #$containerName= 'backup' 
 #$resourceGroupName='K2-DB-Test'   
 
-Set-AzContext -SubscriptionId $SubscriptionID   
+#Set-AzContext -SubscriptionId $SubscriptionID   
 
 New-AzStorageAccount -Name $StorageAccountName -ResourceGroupName $StorageResourceGroupName -Type Standard_RAGRS -Location $LocationName   
 
