@@ -11,6 +11,7 @@ $Environment = "AzureChinaCloud"
 $K2Group = "K2IaC2"
 $K2BackupGroup = "K2Backup"
 $K2BackupStorAcct = "k2sqlserverbackupstorage"
+$K2MySQLServer = "k2mysql01"
 
 $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
 
@@ -29,7 +30,7 @@ az group create -l $Location -g $K2Group
 #./deploy-sqlserver.ps1 -SubscriptionID $SubscriptionID -Location $Location -K2Group $K2Group -K2BackupGroup $K2BackupGroup -K2BackupStorAcct $K2BackupStorAcct
 
 #恢复MySQL数据库
-#./deploy-mysql.ps1 -SubscriptionID $SubscriptionID -Location chinaeast2 -K2Group $K2Group
+#./deploy-mysql.ps1 -SubscriptionID $SubscriptionID -Location chinaeast2 -K2MySQLServer $K2MySQLServer -K2Group $K2Group
 
 #恢复K2服务器
 ./deploy-k2engine.ps1 -SubscriptionID $SubscriptionID -Location $Location -K2Group $K2Group -K2BackupGroup $K2BackupGroup
