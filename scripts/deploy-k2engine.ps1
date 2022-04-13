@@ -11,7 +11,7 @@ param(
  
 $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
 
-Set-AzContext -SubscriptionId $SubscriptionID
+#Set-AzContext -SubscriptionId $SubscriptionID
 
 #镜像：k2-eng-image-20220329192619
 #/subscriptions/<subscription_id>/resourceGroups/K2Backup/providers/Microsoft.Compute/images/k2-eng-image-20220329192619
