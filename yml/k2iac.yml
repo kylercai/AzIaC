@@ -38,7 +38,6 @@ steps:
     arguments: '-SubscriptionID $(SubscriptionID) -Location $(Location) -K2Group $(K2Group)'
     powerShellErrorActionPreference: silentlyContinue
     workingDirectory: scripts
-  enabled: false
 
 - task: AzurePowerShell@5
   displayName: 'Azure PowerShell - deploy SQL VM'
