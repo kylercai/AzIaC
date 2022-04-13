@@ -1,0 +1,71 @@
+pool:
+  name: Azure Pipelines
+variables:
+  SPPasswd: 'WFwBHr~Qb01NfZ_3DG1~2gVBz8q7~3I1A-'
+  SPAppId: '761a7caa-b812-42a1-802f-3addcdbee7a8'
+  TenantID: '0272847e-e5ad-4b88-91ff-3def3e0b0e88'
+  SubscriptionID: 'a15354eb-7827-4177-9745-7abe704ab8e9'
+
+steps:
+- task: AzurePowerShell@5
+  displayName: 'Azure PowerShell - ConnectAzAccount'
+  inputs:
+    azureSubscription: 'K2-AzureCN'
+    ScriptType: InlineScript
+    Inline: |
+     $passwd = ConvertTo-SecureString $(SPPasswd) -AsPlainText -Force
+     $appid = '$(SPAppId)'
+     $pscredential = New-Object System.Management.Automation.PSCredential($appid, $passwd)
+     Connect-AzAccount -ServicePrincipal -Credential $pscredential -Tenant $(TenantID) -Environment AzureChinaCloud
+     Set-AzContext -SubscriptionId $(SubscriptionID)
+    azurePowerShellVersion: LatestVersion
+
+- task: AzureCLI@2
+  displayName: 'Azure CLI - Create Resource Group'
+  inputs:
+    azureSubscription: 'K2-AzureCN'
+    scriptType: pscore
+    scriptLocation: inlineScript
+    inlineScript: 'az group create -l $(Location) -g $(K2Group)'
+    powerShellErrorActionPreference: silentlyContinue
+
+- task: AzureCLI@2
+  displayName: 'Azure CLI - deploy vnet & aks'
+  inputs:
+    azureSubscription: 'K2-AzureCN'
+    scriptType: pscore
+    scriptPath: 'scripts/deploy-aks.ps1'
+    arguments: '-SubscriptionID $(SubscriptionID) -Location $(Location) -K2Group $(K2Group)'
+    powerShellErrorActionPreference: silentlyContinue
+    workingDirectory: scripts
+  enabled: false
+
+- task: AzurePowerShell@5
+  displayName: 'Azure PowerShell - deploy SQL VM'
+  inputs:
+    azureSubscription: 'K2-AzureCN'
+    ScriptPath: 'scripts/deploy-sqlserver.ps1'
+    ScriptArguments: '-SubscriptionID $(SubscriptionID) -Location $(Location) -K2Group $(K2Group) -K2BackupGroup $(K2BackupGroup) -K2BackupStorAcct $(K2BackupStorAcct)'
+    errorActionPreference: silentlyContinue
+    azurePowerShellVersion: LatestVersion
+    workingDirectory: scripts
+
+- task: AzurePowerShell@5
+  displayName: 'Azure PowerShell - deploy MySQL PaaS'
+  inputs:
+    azureSubscription: 'K2-AzureCN'
+    ScriptPath: 'scripts/deploy-mysql.ps1'
+    ScriptArguments: '-SubscriptionID $(SubscriptionID) -Location $(MySQLLocation) -K2MySQLServer $(K2MySQLServer) -K2Group $(K2Group)'
+    errorActionPreference: silentlyContinue
+    azurePowerShellVersion: LatestVersion
+    workingDirectory: scripts
+
+- task: AzureCLI@2
+  displayName: 'Azure CLI - deploy k2engine'
+  inputs:
+    azureSubscription: 'K2-AzureCN'
+    scriptType: pscore
+    scriptPath: 'scripts/deploy-k2engine.ps1'
+    arguments: '-SubscriptionID $(SubscriptionID) -Location $(Location) -K2Group $(K2Group) -K2BackupGroup $(K2BackupGroup)'
+    powerShellErrorActionPreference: silentlyContinue
+    workingDirectory: scripts
