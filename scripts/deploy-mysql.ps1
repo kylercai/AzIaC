@@ -4,10 +4,10 @@ param(
     [Parameter()]
     [string]$Location,
     [Parameter()]
+    [string]$K2MySQLServer,
+    [Parameter()]
     [string]$K2Group
  )
-
-$K2MySQLServer = "k2mysql01"
 
 $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
 
