@@ -21,7 +21,7 @@ $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
 #Image Galleries
 #/subscriptions/<subscription_id>/resourceGroups/K2Backup/providers/Microsoft.Compute/galleries/k2_eng_image/images/k2_eng_image
 $ImageId = Get-AzResource -ResourceGroup $K2BackupGroup -Name k2_eng_image/k2_eng_image -ResourceType Microsoft.Compute/galleries/images | Select-Object -expand ResourceId
-$ImageId = "/subscriptions/a15354eb-7827-4177-9745-7abe704ab8e9/resourceGroups/K2Backup/providers/Microsoft.Compute/galleries/k2_eng_image/images/k2_eng_image"
+$ImageId = "/subscriptions/" + $SubscriptionID + "/resourceGroups/" + $K2BackupGroup +"/providers/Microsoft.Compute/galleries/k2_eng_image/images/k2_eng_image"
 
 az vm create  `
   -n 'k2-en-1'  `
