@@ -1,10 +1,10 @@
 pool:
   name: Azure Pipelines
 variables:
-  SPPasswd: 'WFwBHr~Qb01NfZ_3DG1~2gVBz8q7~3I1A-'
-  SPAppId: '761a7caa-b812-42a1-802f-3addcdbee7a8'
-  TenantID: '0272847e-e5ad-4b88-91ff-3def3e0b0e88'
-  SubscriptionID: 'a15354eb-7827-4177-9745-7abe704ab8e9'
+  SPPasswd: 'xxxxxxxxxxxxxxxxxxx'
+  SPAppId: 'xxxxxxxxxxxxxxxxxxx'
+  TenantID: 'xxxxxxxxxxxxxxxxxxx'
+  SubscriptionID: 'xxxxxxxxxxxxxxxxxxx'
 
 steps:
 - task: AzurePowerShell@5
