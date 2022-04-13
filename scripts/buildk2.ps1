@@ -8,7 +8,7 @@ param(
 #$Environment = "AzureCloud"
 $Environment = "AzureChinaCloud"
 
-$K2Group = "K2IaC"
+$K2Group = "K2IaC2"
 $K2BackupGroup = "K2Backup"
 $K2BackupStorAcct = "k2sqlserverbackupstorage"
 
