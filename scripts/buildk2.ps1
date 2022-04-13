@@ -1,3 +1,5 @@
+# Usage:
+#   .\buildk2.ps1 -SubscriptionID xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx -Location chinanorth3
 param(
      [Parameter()]
      [string]$SubscriptionID,
